@@ -45,7 +45,9 @@ public class PhysicsRBody : MonoBehaviour
 
     /*
      * ______________ <-What does this function do?
-     */
+    * SetAABB Repositions the bounding box around the object every time it is 
+    * call.<-What does this function do?
+    */
     void SetAABB()
     {
         Bounds bound = new Bounds(new Vector2(0, 0), new Vector2(1, 1));
