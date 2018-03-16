@@ -69,10 +69,20 @@ public class PhysicsRBody : MonoBehaviour
 
     /*
      * ______________ Describe how this function works
+     * Answer
+     * The function being a public function is accesible by any of the other game objects with a script in the scene they call the function 
+     * from theyre own script and pass the float dT value to it in this case it is the PhysicsEngine and it is passing its dT val to each Physics rigid body which is then used to calculate
+     * the current velocity and Temp vector2 using acceleration.
+     * Answer
      */
     public void Integrate(float dT){
         /// 
-        /// ______________ What is the purpose of this part of code?
+        /// What is the purpose of this part of code?
+        /// 
+        /// Answer*
+        /// If the object is set to obey gravity and is not touching the ground the if statement applies
+        /// the set gravity vector to the object and in the case of the object is on the ground the velocity.y is set to zero.
+        /// Answer*
         /// 
         if (obeysGravity && !IsGrounded()){ 
             AddForce(gravity);

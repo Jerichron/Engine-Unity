@@ -68,7 +68,8 @@ public class PhysicsEngine : MonoBehaviour
 
                         if (gap.x > gap.y){
                             if (distance.x > 0){
-                                // ... Update collision normal
+                                // ... Update collision normal             
+                                
                             }
                             else{
                                 // ... Update collision normal
