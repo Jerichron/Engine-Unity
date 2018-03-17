@@ -65,25 +65,31 @@ public class PhysicsEngine : MonoBehaviour
                         if (collisions.ContainsKey(pair)){
                             collisions.Remove(pair);
                         }
-                        if (gap.x > gap.y){
+                        if (gap.x > gap.y)
+                        {
                             if (distance.x > 0)
                             {
-                                colInfo.collisionNormal = new Vector2(bodyB.transform.position.y - bodyA.transform.position.y, -(bodyB.transform.position.x - bodyA.transform.position.x));
-                            }
-                            else
-                            {
-                                colInfo.collisionNormal = new Vector2(-(bodyB.transform.position.y - bodyA.transform.position.y), bodyB.transform.position.x - bodyA.transform.position.x);
-                            }
-                            colInfo.penetration = gap.x;    
-                        }
-                        else{
-                            if (distance.y > 0)
-                            {
-                                colInfo.collisionNormal = new Vector2(-(bodyB.transform.position.y - bodyA.transform.position.y), (bodyB.transform.position.x - bodyA.transform.position.x));
+                                colInfo.collisionNormal = new Vector2((bodyB.transform.position.y - bodyA.transform.position.y), (bodyB.transform.position.x - bodyA.transform.position.x));
+
                             }
                             else
                             {
                                 colInfo.collisionNormal = new Vector2((bodyB.transform.position.y - bodyA.transform.position.y), -(bodyB.transform.position.x - bodyA.transform.position.x));
+
+                            }
+                            colInfo.penetration = gap.x;
+                        }
+                        else
+                        {
+                            if (distance.y > 0)
+                            {
+                                colInfo.collisionNormal = new Vector2(-(bodyB.transform.position.y - bodyA.transform.position.y), (bodyB.transform.position.x - bodyA.transform.position.x));
+
+                            }
+                            else
+                            {
+                                colInfo.collisionNormal = new Vector2((bodyB.transform.position.y - bodyA.transform.position.y), (bodyB.transform.position.x - bodyA.transform.position.x));
+
                             }
                             colInfo.penetration = gap.y; 
                         }                                 
@@ -122,6 +128,9 @@ public class PhysicsEngine : MonoBehaviour
             Vector2 impulse = j * collisions[pair].collisionNormal;
 
             // ... update velocities
+            pair.rigidBodyA.currentVelocity = new Vector2(pair.rigidBodyA.currentVelocity.x * impulse.x, pair.rigidBodyA.currentVelocity.y * impulse.y);
+
+            pair.rigidBodyB.currentVelocity = new Vector2(pair.rigidBodyB.currentVelocity.x * impulse.x, pair.rigidBodyB.currentVelocity.y * impulse.y);
 
             if (Mathf.Abs(collisions[pair].penetration) > 0.01f){
                 PositionalCorrection(pair);
